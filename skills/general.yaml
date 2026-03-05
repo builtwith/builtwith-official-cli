@@ -1,0 +1,51 @@
+name: builtwith-cli-general
+description: Universal invariants for all BuiltWith CLI invocations
+
+invariants:
+  - id: dry-run-first
+    rule: Always run with --dry-run before making real API calls to verify the request URL.
+    example: "bw domain lookup example.com --key $BUILTWITH_API_KEY --dry-run"
+
+  - id: env-var-auth
+    rule: Always use the BUILTWITH_API_KEY environment variable. Never inline the key in shell commands (it will appear in shell history and process listings).
+    example: "export BUILTWITH_API_KEY=your_key_here"
+
+  - id: fields-limit
+    rule: Add --fields to every call to limit context window tokens by returning only the data you need.
+    example: "bw domain lookup example.com --fields Results"
+
+  - id: quiet-in-automation
+    rule: Use --quiet in automation and CI/CD pipelines to suppress spinner/info output on stderr.
+    example: "bw domain lookup example.com --quiet"
+
+  - id: json-default
+    rule: Default to --format json (or omit --format) for programmatic use. Use --format table only for human display.
+
+exit_codes:
+  0:
+    meaning: Success
+    action: Proceed normally
+  1:
+    meaning: Unexpected error
+    action: Log and investigate; may be a bug
+  2:
+    meaning: Auth error (missing or invalid key)
+    action: Check BUILTWITH_API_KEY env var; verify key is valid
+  3:
+    meaning: Not found
+    action: Verify the input domain/tech exists
+  4:
+    meaning: Rate limit (429)
+    action: Back off exponentially; max 5 retries; cap at 60s
+  5:
+    meaning: API error (BuiltWith returned an error body)
+    action: Inspect stderr for the error message
+  6:
+    meaning: Network error
+    action: Check connectivity; retry with backoff
+  7:
+    meaning: Invalid input
+    action: Fix the argument; check format requirements
+  8:
+    meaning: Interrupted (SIGINT)
+    action: Re-run if needed

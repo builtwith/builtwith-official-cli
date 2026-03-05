@@ -1,0 +1,41 @@
+name: builtwith-cli-domain-lookup
+description: Domain-specific guidance for bw domain lookup
+
+domain_format:
+  - No protocol prefix (no "https://" or "http://")
+  - No trailing path (no "/path/to/page")
+  - No query string (no "?foo=bar")
+  - Valid: "example.com", "sub.example.co.uk"
+  - Invalid: "https://example.com", "example.com/page", "example.com?foo=1"
+
+flag_combinations:
+  minimal_payload:
+    description: Smallest useful response for tech detection
+    flags: ["--nopii", "--nometa", "--noattr"]
+    example: "bw domain lookup example.com --nopii --nometa --noattr"
+
+  live_only:
+    description: Only currently-active technologies
+    flags: ["--liveonly"]
+    example: "bw domain lookup example.com --liveonly"
+
+  date_filtered:
+    description: Technologies first detected in a date range
+    flags: ["--fdrange <YYYYMMDD-YYYYMMDD>"]
+    example: "bw domain lookup example.com --fdrange 20240101-20241231"
+
+  token_efficient:
+    description: Only the technologies array to minimize context window usage
+    flags: ["--fields Results.0.Technologies", "--nopii", "--nometa"]
+    example: "bw domain lookup example.com --fields Results.0.Technologies --nopii --nometa"
+
+patterns:
+  dry_run_first:
+    description: Always verify the URL before spending API quota
+    steps:
+      - "bw domain lookup example.com --dry-run"
+      - "bw domain lookup example.com"
+
+  field_filtering:
+    description: Extract just the technologies from the first result
+    example: "bw domain lookup example.com --fields Results.0.Technologies"

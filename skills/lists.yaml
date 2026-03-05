@@ -1,0 +1,33 @@
+name: builtwith-cli-lists
+description: Pagination and rate-limit guidance for bw lists tech
+
+pagination:
+  strategy: offset-based
+  default_limit: 20
+  algorithm:
+    - Start with --offset 0 --limit 20
+    - Increment offset by limit on each page
+    - Stop when the number of results returned is less than limit (indicates last page)
+  example_page_1: "bw lists tech WordPress --offset 0 --limit 20"
+  example_page_2: "bw lists tech WordPress --offset 20 --limit 20"
+  example_page_3: "bw lists tech WordPress --offset 40 --limit 20"
+
+  inter_page_delay:
+    recommendation: 1 second between pages to avoid triggering rate limits
+    rationale: BuiltWith API has rate limits; rapid sequential calls may return exit code 4
+
+rate_limit_handling:
+  exit_code: 4
+  strategy: exponential-backoff
+  steps:
+    - On exit code 4, wait before retrying
+    - Retry intervals: 2s, 4s, 8s, 16s, 32s (exponential)
+    - Cap wait at 60 seconds
+    - Maximum 5 retries before aborting
+  pseudocode: |
+    for attempt in 1..5:
+      result = bw lists tech WordPress --offset $offset --limit $limit
+      if exit_code == 4:
+        sleep min(2^attempt, 60)
+      else:
+        break
