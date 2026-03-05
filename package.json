@@ -10,8 +10,23 @@
   "scripts": {
     "test": "node --test test/*.test.js"
   },
+  "files": [
+    "bin/",
+    "lib/"
+  ],
   "keywords": ["builtwith", "cli", "api"],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/builtwith/builtwith-cli.git"
+  },
+  "homepage": "https://github.com/builtwith/builtwith-cli#readme",
+  "bugs": {
+    "url": "https://github.com/builtwith/builtwith-cli/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "chalk": "^4.1.2",
     "cli-table3": "^0.6.5",
