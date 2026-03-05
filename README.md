@@ -6,6 +6,7 @@
 bw domain lookup shopify.com --format table
 bw domain lookup shopify.com --nopii | jq '.Results[0].Technologies[].Name'
 bw live feed --duration 60 > events.ndjson
+bw mcp   # start MCP server for Claude Desktop, VS Code, etc.
 ```
 
 ## Why this exists
@@ -317,6 +318,71 @@ npm test        # 24 tests, node:test built-in (no extra framework)
 # Run without installing globally
 node bin/bw.js domain lookup example.com --key YOUR_KEY
 ```
+
+---
+
+---
+
+## MCP Server
+
+`bw mcp` starts a [Model Context Protocol](https://modelcontextprotocol.io) server over stdio, exposing all BuiltWith API endpoints as structured tools that any MCP-compatible client can call — Claude Desktop, VS Code, Cursor, Zed, and more.
+
+```bash
+bw mcp
+bw mcp --key YOUR_API_KEY   # pass key inline instead of env/rc file
+bw mcp --debug              # log JSON-RPC traffic to stderr
+```
+
+### Client configuration
+
+Add to your MCP client config (e.g. `claude_desktop_config.json`):
+
+```json
+{
+  "mcpServers": {
+    "builtwith": {
+      "command": "bw",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+If your API key isn't in an env var or `.builtwithrc`, pass it inline:
+
+```json
+{
+  "mcpServers": {
+    "builtwith": {
+      "command": "bw",
+      "args": ["mcp", "--key", "YOUR_API_KEY"]
+    }
+  }
+}
+```
+
+### Available tools
+
+| Tool | Description |
+|---|---|
+| `domain_lookup` | Technology stack for a domain (supports `nopii`, `liveonly`, date ranges) |
+| `lists_tech` | Domains currently using a technology |
+| `relationships_lookup` | Related domains (shared infra, ownership) |
+| `free_lookup` | Free-tier category counts for a domain |
+| `company_find` | Domains associated with a company name |
+| `tags_lookup` | Domains related to an IP or tag attribute |
+| `recommendations_lookup` | Technology recommendations for a domain |
+| `redirects_lookup` | Live and historical redirect chains |
+| `keywords_lookup` | Keyword data for a domain |
+| `trends_tech` | Historical adoption trend for a technology |
+| `products_search` | Search ecommerce products across indexed stores |
+| `trust_lookup` | Trust/quality score for a domain |
+| `account_whoami` | Authenticated account identity |
+| `account_usage` | API usage statistics |
+
+### Implementation note
+
+The MCP server is implemented as a pure JSON-RPC 2.0 stdio server with no additional dependencies — auth, HTTP calls, and error handling all use the same code paths as the regular CLI commands.
 
 ---
 
