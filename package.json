@@ -18,11 +18,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/builtwith/builtwith-cli.git"
+    "url": "https://github.com/builtwith/builtwith-official-cli.git"
   },
-  "homepage": "https://github.com/builtwith/builtwith-cli#readme",
+  "homepage": "https://github.com/builtwith/builtwith-official-cli#readme",
   "bugs": {
-    "url": "https://github.com/builtwith/builtwith-cli/issues"
+    "url": "https://github.com/builtwith/builtwith-official-cli/issues"
   },
   "engines": {
     "node": ">=18"
