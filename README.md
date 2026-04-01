@@ -183,7 +183,7 @@ bw vector search "ecommerce platform" --limit 20
 
 ### 💳 Payment
 
-Manage API credits autonomously. Uses a separate Agent Payment API key — set it up at [payments.builtwith.com/agent-payment-api-config](https://payments.builtwith.com/agent-payment-api-config).
+Manage API credits autonomously.
 
 ```bash
 bw payment balance           # current credit balance
