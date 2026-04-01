@@ -181,6 +181,21 @@ bw vector search "react framework"
 bw vector search "ecommerce platform" --limit 20
 ```
 
+### 💳 Payment
+
+Manage API credits autonomously. Uses a separate Agent Payment API key — set it up at [payments.builtwith.com/agent-payment-api-config](https://payments.builtwith.com/agent-payment-api-config).
+
+```bash
+bw payment balance           # current credit balance
+bw payment config            # limits, pricing, monthly usage
+bw payment purchase <credits> # purchase credits (minimum 2000)
+```
+
+```bash
+bw payment balance
+bw payment purchase 2000
+```
+
 ### 👤 Account
 
 ```bash
@@ -371,6 +386,9 @@ If your API key isn't in an env var or `.builtwithrc`, pass it inline:
 | `products_search` | 🛍️ Search ecommerce products across indexed stores |
 | `trust_lookup` | 🛡️ Trust/quality score for a domain |
 | `vector_search` | 🔎 Semantic search across technologies and categories |
+| `payment_balance` | 💳 Get current Agent Payment API credit balance |
+| `payment_config` | ⚙️ Retrieve payment limits and pricing configuration |
+| `payment_purchase` | 🛒 Purchase API credits (minimum 2000) |
 | `account_whoami` | 👤 Authenticated account identity |
 | `account_usage` | 📊 API usage statistics |
 
