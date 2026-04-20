@@ -181,6 +181,19 @@ bw vector search "react framework"
 bw vector search "ecommerce platform" --limit 20
 ```
 
+### 🔐 Auth
+
+Obtain a temporary `bw-` prefixed API token via browser approval — no API key needed to run this command.
+
+```bash
+bw auth login
+```
+
+Flow:
+1. Prints a `builtwith.com` URL — open it in your browser and click **Approve**
+2. Polls automatically every 5 seconds
+3. Prints the `access_token` (`bw-...`) on approval — use it as `BW_API_KEY`
+
 ### 💳 Payment
 
 Manage API credits autonomously.
@@ -391,6 +404,8 @@ If your API key isn't in an env var or `.builtwithrc`, pass it inline:
 | `payment_purchase` | 🛒 Purchase API credits (minimum 2000) |
 | `account_whoami` | 👤 Authenticated account identity |
 | `account_usage` | 📊 API usage statistics |
+| `agent-auth-start` | 🔐 Start Device-Code Authorization (no API key required) |
+| `agent-auth-token` | 🔐 Poll for authorization result and access token (no API key required) |
 
 ### 🔬 Implementation note
 
