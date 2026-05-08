@@ -5,6 +5,7 @@
 ```bash
 bw domain lookup shopify.com --format table
 bw domain lookup shopify.com --nopii | jq '.Results[0].Technologies[].Name'
+bw change lookup shopify.com --since "last month"
 bw live feed --duration 60 > events.ndjson
 bw mcp   # start MCP server for Claude Desktop, VS Code, etc.
 ```
@@ -84,6 +85,17 @@ bw domain lookup shopify.com
 bw domain lookup shopify.com --format table
 bw domain lookup shopify.com --nopii --liveonly | jq '.Results[0].Technologies[].Name'
 bw domain lookup shopify.com --fdrange 20240101-20241231
+```
+
+### 🔄 Change
+
+```bash
+bw change lookup <domain[,domain2]> [--since <date>]
+```
+
+```bash
+bw change lookup shopify.com
+bw change lookup shopify.com,builtwith.com --since "last month"
 ```
 
 ### 📋 Lists
@@ -387,6 +399,7 @@ If your API key isn't in an env var or `.builtwithrc`, pass it inline:
 | Tool | Description |
 |---|---|
 | `domain_lookup` | 🌐 Technology stack for a domain (supports `nopii`, `liveonly`, date ranges) |
+| `change_lookup` | 🔄 Technology additions and removals for one or more domains |
 | `lists_tech` | 📋 Domains currently using a technology |
 | `relationships_lookup` | 🔗 Related domains (shared infra, ownership) |
 | `free_lookup` | 🆓 Free-tier category counts for a domain |
