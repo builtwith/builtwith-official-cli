@@ -101,12 +101,13 @@ bw change lookup shopify.com,builtwith.com --since "last month"
 ### 📋 Lists
 
 ```bash
-bw lists tech <tech> [--offset <n>] [--limit <n>]
+bw lists tech <tech> [--other-techs <names>] [--offset <n>] [--limit <n>]
 ```
 
 ```bash
 bw lists tech WordPress
 bw lists tech Shopify --limit 50 --offset 100
+bw lists tech Google-Analytics --other-techs Meta-Pixel
 ```
 
 ### 🔗 Relationships
