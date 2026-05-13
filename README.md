@@ -101,14 +101,17 @@ bw change lookup shopify.com,builtwith.com --since "last month"
 ### 📋 Lists
 
 ```bash
-bw lists tech <tech> [--other-techs <names>] [--offset <n>] [--limit <n>]
+bw lists tech <tech> [--other-techs <names>] [--country <codes>] [--since <date>] [--revenue <filter>] [--spend <filter>] [--offset <n>] [--limit <n>]
 ```
 
 ```bash
 bw lists tech WordPress
 bw lists tech Shopify --limit 50 --offset 100
 bw lists tech Google-Analytics --other-techs Meta-Pixel
+bw lists tech Shopify --revenue "100000|GT" --spend "100|GTE" --country US
 ```
+
+Lists numeric filters use `number|operator`, where operator is `EQ`, `LT`, `LTE`, `GT`, or `GTE`. Supported attribute filters include `--spend`, `--revenue`, `--sku`, `--followers`, `--employees`, `--sitemap`, `--page-rank`, `--bw-rank`, `--tranco`, `--majestic`, `--bws`, `--ecat`, `--aim`, `--aio`, `--air`, and `--aiv`.
 
 ### 🔗 Relationships
 
