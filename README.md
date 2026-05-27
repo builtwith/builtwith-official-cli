@@ -197,6 +197,28 @@ bw vector search "react framework"
 bw vector search "ecommerce platform" --limit 20
 ```
 
+### 💬 Ask
+
+Natural language website list lookup — ask a plain-English question and get back matching domains.
+
+```bash
+bw ask search <query> [--commit] [--next-offset <token>] [--meta]
+```
+
+| Flag | Description |
+|---|---|
+| `--commit` | Run a full report (up to 1,000 results; uses more API credits) |
+| `--next-offset <token>` | Pagination token from a previous response's `NextOffset` field |
+| `--meta` | Include metadata in results |
+
+```bash
+bw ask search "Magento websites in Spain"
+bw ask search "Shopify stores selling pet products" --commit
+bw ask search "React e-commerce sites" --commit --next-offset <token>
+```
+
+Without `--commit`, every request returns a quick sample — great for previewing before running a full report.
+
 ### 🔐 Auth
 
 Obtain a temporary `bw-` prefixed API token via browser approval — no API key needed to run this command.
@@ -416,6 +438,7 @@ If your API key isn't in an env var or `.builtwithrc`, pass it inline:
 | `products_search` | 🛍️ Search ecommerce products across indexed stores |
 | `trust_lookup` | 🛡️ Trust/quality score for a domain |
 | `vector_search` | 🔎 Semantic search across technologies and categories |
+| `ask_search` | 💬 Natural language website list lookup |
 | `payment_balance` | 💳 Get current Agent Payment API credit balance |
 | `payment_config` | ⚙️ Retrieve payment limits and pricing configuration |
 | `payment_purchase` | 🛒 Purchase API credits (minimum 2000) |
