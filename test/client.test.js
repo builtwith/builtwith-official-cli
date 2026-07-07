@@ -12,7 +12,7 @@ describe('client - buildUrl', () => {
     ({ buildUrl } = require('../lib/client'));
 
     const url = buildUrl('domain', { KEY: 'mykey', LOOKUP: 'example.com' });
-    assert.ok(url.startsWith('https://api.builtwith.com/v22/api.json'));
+    assert.ok(url.startsWith('https://api.builtwith.com/v23/api.json'));
     assert.ok(url.includes('KEY=mykey'));
     assert.ok(url.includes('LOOKUP=example.com'));
   });
@@ -51,7 +51,7 @@ describe('client - maskKey', () => {
     delete require.cache[require.resolve('../lib/errors')];
     ({ maskKey } = require('../lib/client'));
 
-    const url = 'https://api.builtwith.com/v22/api.json?KEY=secret123&LOOKUP=example.com';
+    const url = 'https://api.builtwith.com/v23/api.json?KEY=secret123&LOOKUP=example.com';
     const masked = maskKey(url, 'secret123');
     assert.ok(!masked.includes('secret123'));
     assert.ok(masked.includes('REDACTED'));

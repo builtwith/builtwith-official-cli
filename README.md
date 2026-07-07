@@ -374,7 +374,7 @@ bw domain lookup mysite.com --key "$BUILTWITH_API_KEY" --quiet || exit 1
 ```bash
 # Preview the URL that would be called (key is masked)
 bw domain lookup example.com --key MYKEY --dry-run
-# → https://api.builtwith.com/v22/api.json?KEY=REDACTED&LOOKUP=example.com
+# → https://api.builtwith.com/v23/api.json?KEY=REDACTED&LOOKUP=example.com
 
 # See HTTP response metadata
 bw domain lookup example.com --debug
