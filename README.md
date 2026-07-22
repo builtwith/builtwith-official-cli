@@ -186,6 +186,18 @@ bw products search "running shoes" --page 2 --limit 50
 bw trust lookup <domain>
 ```
 
+### 🧾 VAT
+
+```bash
+bw vat lookup <domains>
+bw vat types
+```
+
+```bash
+bw vat lookup example.com,builtwith.com
+bw vat types
+```
+
 ### 🔎 Vector Search
 
 ```bash
@@ -437,6 +449,8 @@ If your API key isn't in an env var or `.builtwithrc`, pass it inline:
 | `trends_tech` | 📈 Historical adoption trend for a technology |
 | `products_search` | 🛍️ Search ecommerce products across indexed stores |
 | `trust_lookup` | 🛡️ Trust/quality score for a domain |
+| `vat_lookup` | 🧾 VAT, GST, and company registration numbers for 1–16 domains |
+| `vat_types` | 🧾 Reference list of VAT registration types (no API key required) |
 | `vector_search` | 🔎 Semantic search across technologies and categories |
 | `ask_search` | 💬 Natural language website list lookup |
 | `payment_balance` | 💳 Get current Agent Payment API credit balance |
