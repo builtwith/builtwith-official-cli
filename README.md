@@ -198,6 +198,17 @@ bw vat lookup example.com,builtwith.com
 bw vat types
 ```
 
+### 🔌 MCP Registry
+
+```bash
+bw mcp-registry search [query] [--category <category>] [--offset <offset>]
+```
+
+```bash
+bw mcp-registry search payments
+bw mcp-registry search --category developer-tools --offset 100
+```
+
 ### 🔎 Vector Search
 
 ```bash
@@ -451,6 +462,7 @@ If your API key isn't in an env var or `.builtwithrc`, pass it inline:
 | `trust_lookup` | 🛡️ Trust/quality score for a domain |
 | `vat_lookup` | 🧾 VAT, GST, and company registration numbers for 1–16 domains |
 | `vat_types` | 🧾 Reference list of VAT registration types (no API key required) |
+| `mcp_registry_search` | 🔌 Search/browse the BuiltWith MCP registry of discovered remote MCP servers (no API credits) |
 | `vector_search` | 🔎 Semantic search across technologies and categories |
 | `ask_search` | 💬 Natural language website list lookup |
 | `payment_balance` | 💳 Get current Agent Payment API credit balance |
