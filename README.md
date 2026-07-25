@@ -209,6 +209,19 @@ bw mcp-registry search payments
 bw mcp-registry search --category developer-tools --offset 100
 ```
 
+### 🔌 MCP Registry (v2)
+
+Returns per-endpoint auth flags (`AuthRequired`) and `first_detected`/`last_detected` dates in addition to the v1 fields.
+
+```bash
+bw mcp-registry-v2 search [query] [--category <category>] [--offset <offset>]
+```
+
+```bash
+bw mcp-registry-v2 search payments
+bw mcp-registry-v2 search --category developer-tools --offset 100
+```
+
 ### 🔎 Vector Search
 
 ```bash
@@ -462,7 +475,8 @@ If your API key isn't in an env var or `.builtwithrc`, pass it inline:
 | `trust_lookup` | 🛡️ Trust/quality score for a domain |
 | `vat_lookup` | 🧾 VAT, GST, and company registration numbers for 1–16 domains |
 | `vat_types` | 🧾 Reference list of VAT registration types (no API key required) |
-| `mcp_registry_search` | 🔌 Search/browse the BuiltWith MCP registry of discovered remote MCP servers (no API credits) |
+| `mcp_registry_search` | 🔌 Search/browse the BuiltWith MCP registry (v1) of discovered remote MCP servers (no API credits) |
+| `mcp_registry_v2_search` | 🔌 Search/browse the BuiltWith MCP registry (v2), with per-endpoint auth flags and first/last detected dates (no API credits) |
 | `vector_search` | 🔎 Semantic search across technologies and categories |
 | `ask_search` | 💬 Natural language website list lookup |
 | `payment_balance` | 💳 Get current Agent Payment API credit balance |
