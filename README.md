@@ -1,5 +1,9 @@
 # BuiltWith CLI 🔍
 
+## Domain API v25
+
+Domain lookups now use API v25. Technology records include numeric `confidence` scores from 0 to 1. Full JSON responses include `Meta.company_reg`, an array of company registration records with string `type` and `number` fields; registration numbers preserve leading zeros. The array is empty when unavailable or metadata is excluded. See the [API reference](https://api.builtwith.com/llms.txt).
+
 > Non-interactive, scriptable CLI for the [BuiltWith API](https://api.builtwith.com) — designed for automation, CI/CD pipelines, and AI agent consumption.
 
 ```bash
@@ -410,7 +414,7 @@ bw domain lookup mysite.com --key "$BUILTWITH_API_KEY" --quiet || exit 1
 ```bash
 # Preview the URL that would be called (key is masked)
 bw domain lookup example.com --key MYKEY --dry-run
-# → https://api.builtwith.com/v23/api.json?KEY=REDACTED&LOOKUP=example.com
+# → https://api.builtwith.com/v25/api.json?KEY=REDACTED&LOOKUP=example.com
 
 # See HTTP response metadata
 bw domain lookup example.com --debug
