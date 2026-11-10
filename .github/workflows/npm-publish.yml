@@ -1,6 +1,12 @@
-name: Publish to npm
+name: Stage on npm
 
 on:
+  workflow_dispatch:
+    inputs:
+      release_ref:
+        description: Existing release tag to stage
+        required: true
+        type: string
   release:
     types: [published]
 
@@ -13,16 +19,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.release_ref || github.ref }}
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
           registry-url: 'https://registry.npmjs.org'
 
       - run: npm ci
 
       - run: npm test
 
-      - run: npm publish --provenance --access public
+      - run: npx --yes npm@11.15.0 stage publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
